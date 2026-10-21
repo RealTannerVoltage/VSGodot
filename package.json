@@ -1,0 +1,63 @@
+{
+  "name": "vsgodot",
+  "displayName": "VSGodot",
+  "description": "Open Godot projects in Godot 3 or 4 from VS Code.",
+  "version": "0.0.1",
+  "publisher": "vsgodot",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "main": "./dist/extension.js",
+  "browser": "./dist/browser.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "godot.run",
+        "title": "Godot: Open Editor"
+      },
+      {
+        "command": "godot.selectVersion",
+        "title": "Godot: Select Project Version"
+      }
+    ],
+    "configuration": {
+      "title": "VSGodot",
+      "properties": {
+        "godot.version": {
+          "type": "string",
+          "enum": ["3", "4"],
+          "default": "4",
+          "scope": "resource",
+          "description": "Godot major version used for this project."
+        },
+        "godot.executable4": {
+          "type": "string",
+          "default": "godot",
+          "description": "Path or command for the latest installed Godot 4 editor."
+        },
+        "godot.executable3": {
+          "type": "string",
+          "default": "godot3",
+          "description": "Path or command for the latest installed Godot 3 editor."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "npm run typecheck && node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.4.5"
+  }
+}
